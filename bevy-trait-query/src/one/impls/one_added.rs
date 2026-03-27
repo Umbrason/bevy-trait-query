@@ -1,5 +1,5 @@
 use bevy_ecs::ptr::UnsafeCellDeref;
-use std::marker::PhantomData;
+use core::marker::PhantomData;
 
 use bevy_ecs::{
     archetype::Archetype,
@@ -65,7 +65,7 @@ unsafe impl<Trait: ?Sized + TraitQuery> QueryData for OneAdded<Trait> {
     fn iter_access(
         _state: &Self::State,
     ) -> impl Iterator<Item = bevy_ecs::query::EcsAccessType<'_>> {
-        std::iter::empty()
+        core::iter::empty()
     }
 }
 
@@ -138,7 +138,7 @@ unsafe impl<Trait: ?Sized + TraitQuery> WorldQuery for OneAdded<Trait> {
             assert!(
                 !access.access().has_component_write(component),
                 "&{} conflicts with a previous access in this query. Shared access cannot coincide with exclusive access.",
-                std::any::type_name::<Trait>(),
+                core::any::type_name::<Trait>(),
             );
             if not_first {
                 let mut intermediate = access.clone();

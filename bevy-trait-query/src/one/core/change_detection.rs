@@ -1,4 +1,4 @@
-use std::cell::UnsafeCell;
+use core::cell::UnsafeCell;
 
 use bevy_ecs::{
     change_detection::Tick,

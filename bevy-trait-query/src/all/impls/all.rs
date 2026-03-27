@@ -66,7 +66,7 @@ unsafe impl<Trait: ?Sized + TraitQuery> QueryData for All<&Trait> {
     fn iter_access(
         _state: &Self::State,
     ) -> impl Iterator<Item = bevy_ecs::query::EcsAccessType<'_>> {
-        std::iter::empty()
+        core::iter::empty()
     }
 }
 unsafe impl<Trait: ?Sized + TraitQuery> ReadOnlyQueryData for All<&Trait> {}
@@ -126,7 +126,7 @@ unsafe impl<Trait: ?Sized + TraitQuery> WorldQuery for All<&Trait> {
             assert!(
                 !access.access().has_component_write(component),
                 "&{} conflicts with a previous access in this query. Shared access cannot coincide with exclusive access.",
-                std::any::type_name::<Trait>(),
+                core::any::type_name::<Trait>(),
             );
             if not_first {
                 let mut intermediate = access.clone();
@@ -208,7 +208,7 @@ unsafe impl<'a, Trait: ?Sized + TraitQuery> QueryData for All<&'a mut Trait> {
     fn iter_access(
         _state: &Self::State,
     ) -> impl Iterator<Item = bevy_ecs::query::EcsAccessType<'_>> {
-        std::iter::empty()
+        core::iter::empty()
     }
 }
 
@@ -268,7 +268,7 @@ unsafe impl<Trait: ?Sized + TraitQuery> WorldQuery for All<&mut Trait> {
             assert!(
                 !access.access().has_component_write(component),
                 "&mut {} conflicts with a previous access in this query. Mutable component access must be unique.",
-                std::any::type_name::<Trait>(),
+                core::any::type_name::<Trait>(),
             );
             if not_first {
                 let mut intermediate = access.clone();

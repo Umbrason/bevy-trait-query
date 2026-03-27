@@ -1,3 +1,4 @@
+use alloc::boxed::Box;
 use bevy_ecs::component::ComponentId;
 use bevy_ecs::prelude::World;
 
@@ -18,7 +19,7 @@ impl<Trait: ?Sized + TraitQuery> TraitQueryState<Trait> {
         fn missing_registry<T: ?Sized + 'static>() -> TraitImplRegistry<T> {
             tracing::warn!(
                 "no components found matching `{}`, did you forget to register them?",
-                std::any::type_name::<T>()
+                core::any::type_name::<T>()
             );
             TraitImplRegistry::<T>::default()
         }

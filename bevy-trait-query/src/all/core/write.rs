@@ -38,13 +38,13 @@ pub struct WriteTraits<'a, Trait: ?Sized + TraitQuery> {
 
 #[doc(hidden)]
 pub type CombinedWriteTraitsIter<'a, Trait> =
-    std::iter::Chain<WriteTableTraitsIter<'a, Trait>, WriteSparseTraitsIter<'a, Trait>>;
+    core::iter::Chain<WriteTableTraitsIter<'a, Trait>, WriteSparseTraitsIter<'a, Trait>>;
 
 #[doc(hidden)]
 pub struct WriteTableTraitsIter<'a, Trait: ?Sized> {
     // SAFETY: These two iterators must have equal length.
-    pub(crate) components: std::slice::Iter<'a, ComponentId>,
-    pub(crate) meta: std::slice::Iter<'a, TraitImplMeta<Trait>>,
+    pub(crate) components: core::slice::Iter<'a, ComponentId>,
+    pub(crate) meta: core::slice::Iter<'a, TraitImplMeta<Trait>>,
     pub(crate) table: &'a Table,
     /// SAFETY: Given the same trait type and same archetype,
     /// no two instances of this struct may have the same `table_row`.
@@ -103,8 +103,8 @@ impl<'a, Trait: ?Sized + TraitQuery> Iterator for WriteTableTraitsIter<'a, Trait
 #[doc(hidden)]
 pub struct WriteSparseTraitsIter<'a, Trait: ?Sized> {
     // SAFETY: These two iterators must have equal length.
-    pub(crate) components: std::slice::Iter<'a, ComponentId>,
-    pub(crate) meta: std::slice::Iter<'a, TraitImplMeta<Trait>>,
+    pub(crate) components: core::slice::Iter<'a, ComponentId>,
+    pub(crate) meta: core::slice::Iter<'a, TraitImplMeta<Trait>>,
     /// SAFETY: Given the same trait type and same archetype,
     /// no two instances of this struct may have the same `entity`.
     pub(crate) entity: Entity,

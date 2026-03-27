@@ -1,4 +1,4 @@
-use std::marker::PhantomData;
+use core::marker::PhantomData;
 
 use bevy_ecs::{
     change_detection::Tick,
@@ -49,7 +49,7 @@ unsafe impl<Trait: ?Sized + TraitQuery> WorldQuery for WithoutAny<Trait> {
             assert!(
                 !access.access().has_component_write(component),
                 "&{} conflicts with a previous access in this query. Shared access cannot coincide with exclusive access.",
-                std::any::type_name::<Trait>(),
+                core::any::type_name::<Trait>(),
             );
             access.and_without(component);
         }

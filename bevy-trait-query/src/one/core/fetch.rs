@@ -1,4 +1,4 @@
-use std::{cell::UnsafeCell, panic::Location};
+use core::{cell::UnsafeCell, panic::Location};
 
 use bevy_ecs::{
     change_detection::MaybeLocation,

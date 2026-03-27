@@ -1,7 +1,11 @@
-use crate::TraitQuery;
-use crate::dyn_constructor::DynCtor;
+use alloc::vec;
+use alloc::vec::Vec;
 use bevy_ecs::component::{Component, ComponentId, StorageType};
 use bevy_ecs::prelude::Resource;
+
+use crate::TraitQuery;
+use crate::dyn_constructor::DynCtor;
+
 #[derive(Resource)]
 pub(crate) struct TraitImplRegistry<Trait: ?Sized> {
     // Component IDs are stored contiguously so that we can search them quickly.

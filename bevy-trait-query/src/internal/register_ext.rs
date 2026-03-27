@@ -26,7 +26,7 @@ impl RegisterExt for World {
             .get_resource_or_insert_with::<TraitImplRegistry<Trait>>(Default::default)
             .into_inner();
         let meta = TraitImplMeta {
-            size_bytes: std::mem::size_of::<C>(),
+            size_bytes: core::mem::size_of::<C>(),
             dyn_ctor: DynCtor { cast: <(C,)>::cast },
         };
         registry.register::<C>(component_id, meta);

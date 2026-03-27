@@ -99,7 +99,7 @@ unsafe impl<Trait: ?Sized + TraitQuery> QueryData for One<&Trait> {
     fn iter_access(
         _state: &Self::State,
     ) -> impl Iterator<Item = bevy_ecs::query::EcsAccessType<'_>> {
-        std::iter::empty()
+        core::iter::empty()
     }
 }
 
@@ -177,7 +177,7 @@ unsafe impl<Trait: ?Sized + TraitQuery> WorldQuery for One<&Trait> {
             // without loss of generality we use the zero-th row since we only care about whether the
             // component exists in the table
             let row = TableRow::new(0_u16.into());
-            for (&component_id, &meta) in std::iter::zip(&*state.components, &*state.meta) {
+            for (&component_id, &meta) in core::iter::zip(&*state.components, &*state.meta) {
                 if let Some(table_storage) = get_table_fetch_data(table, component_id, row, meta) {
                     fetch.storage = table_storage;
                     return;
@@ -196,7 +196,7 @@ unsafe impl<Trait: ?Sized + TraitQuery> WorldQuery for One<&Trait> {
             assert!(
                 !access.access().has_component_write(component),
                 "&{} conflicts with a previous access in this query. Shared access cannot coincide with exclusive access.",
-                std::any::type_name::<Trait>(),
+                core::any::type_name::<Trait>(),
             );
             if not_first {
                 let mut intermediate = access.clone();
@@ -321,7 +321,7 @@ unsafe impl<'a, Trait: ?Sized + TraitQuery> QueryData for One<&'a mut Trait> {
     fn iter_access(
         _state: &Self::State,
     ) -> impl Iterator<Item = bevy_ecs::query::EcsAccessType<'_>> {
-        std::iter::empty()
+        core::iter::empty()
     }
 }
 
@@ -395,7 +395,7 @@ unsafe impl<Trait: ?Sized + TraitQuery> WorldQuery for One<&mut Trait> {
             // without loss of generality we use the zero-th row since we only care about whether the
             // component exists in the table
             let row = TableRow::new(0_u16.into());
-            for (&component_id, &meta) in std::iter::zip(&*state.components, &*state.meta) {
+            for (&component_id, &meta) in core::iter::zip(&*state.components, &*state.meta) {
                 if let Some(table_storage) = get_table_fetch_data(table, component_id, row, meta) {
                     fetch.storage = table_storage;
                     return;
@@ -414,7 +414,7 @@ unsafe impl<Trait: ?Sized + TraitQuery> WorldQuery for One<&mut Trait> {
             assert!(
                 !access.access().has_component_write(component),
                 "&mut {} conflicts with a previous access in this query. Mutable component access must be unique.",
-                std::any::type_name::<Trait>(),
+                core::any::type_name::<Trait>(),
             );
             if not_first {
                 let mut intermediate = access.clone();

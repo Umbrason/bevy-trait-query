@@ -1,6 +1,15 @@
+extern crate std;
+
 use super::*;
 use bevy_ecs::prelude::*;
+
+use std::borrow::ToOwned;
 use std::fmt::{Debug, Display};
+use std::format;
+use std::println;
+use std::string::{String, ToString};
+use std::vec;
+use std::vec::Vec;
 
 // Required for proc macros.
 use crate as bevy_trait_query;

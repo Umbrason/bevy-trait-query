@@ -32,13 +32,13 @@ pub struct ReadTraits<'a, Trait: ?Sized + TraitQuery> {
 
 #[doc(hidden)]
 pub type CombinedReadTraitsIter<'a, Trait> =
-    std::iter::Chain<ReadTableTraitsIter<'a, Trait>, ReadSparseTraitsIter<'a, Trait>>;
+    core::iter::Chain<ReadTableTraitsIter<'a, Trait>, ReadSparseTraitsIter<'a, Trait>>;
 
 #[doc(hidden)]
 pub struct ReadTableTraitsIter<'a, Trait: ?Sized> {
     // SAFETY: These two iterators must have equal length.
-    pub(crate) components: std::slice::Iter<'a, ComponentId>,
-    pub(crate) meta: std::slice::Iter<'a, TraitImplMeta<Trait>>,
+    pub(crate) components: core::slice::Iter<'a, ComponentId>,
+    pub(crate) meta: core::slice::Iter<'a, TraitImplMeta<Trait>>,
     pub(crate) table_row: TableRow,
     // Grants shared access to the components corresponding to `components` in this table.
     // Not all components are guaranteed to exist in the table.
@@ -93,8 +93,8 @@ impl<'a, Trait: ?Sized + TraitQuery> Iterator for ReadTableTraitsIter<'a, Trait>
 #[doc(hidden)]
 pub struct ReadSparseTraitsIter<'a, Trait: ?Sized> {
     // SAFETY: These two iterators must have equal length.
-    pub(crate) components: std::slice::Iter<'a, ComponentId>,
-    pub(crate) meta: std::slice::Iter<'a, TraitImplMeta<Trait>>,
+    pub(crate) components: core::slice::Iter<'a, ComponentId>,
+    pub(crate) meta: core::slice::Iter<'a, TraitImplMeta<Trait>>,
     pub(crate) entity: Entity,
     // Grants shared access to the components corresponding to both `components` and `entity`.
     pub(crate) sparse_sets: &'a SparseSets,

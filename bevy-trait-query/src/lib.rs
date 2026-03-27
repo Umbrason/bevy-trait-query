@@ -256,6 +256,9 @@
 //! | 2 matches         | 8.473 µs       | -                   | 106.47 µs         |
 //! | 1-2 matches       | -              | 14.619 µs           | 92.876 µs         |
 //!
+#![no_std]
+
+extern crate alloc;
 
 mod internal;
 #[cfg(test)]
@@ -296,7 +299,7 @@ unsafe fn debug_unreachable() -> ! {
 
     #[cfg(not(debug_assertions))]
     #[allow(unsafe_op_in_unsafe_fn)]
-    std::hint::unreachable_unchecked();
+    core::hint::unreachable_unchecked();
 }
 
 #[inline(never)]
