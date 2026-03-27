@@ -13,9 +13,9 @@ default = ["bevy_app"]
 
 [dependencies]
 bevy-trait-query-impl = { workspace = true }
-bevy_app              = { optional = true, workspace = true }
-bevy_ecs              = { workspace = true }
-tracing               = { workspace = true }
+bevy_app              = { default-features = false, optional = true, workspace = true }
+bevy_ecs              = { default-features = false, workspace = true }
+tracing               = { default-features = false, workspace = true }
 
 [dev-dependencies]
 bevy      = { default-features = false, workspace = true }

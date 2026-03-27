@@ -10,9 +10,9 @@ license    = "MIT OR Apache-2.0"
 repository = "https://github.com/JoJoJet/bevy-trait-query/"
 
 [workspace.dependencies]
-bevy_app = { version = "0.18.0" }
-bevy_ecs = { version = "0.18.0" }
-tracing  = { version = "0.1.41" }
+bevy_app = { default-features = false, version = "0.18.0" }
+bevy_ecs = { default-features = false, version = "0.18.0" }
+tracing  = { default-features = false, version = "0.1.41" }
 
 # proc macro
 bevy-trait-query-impl = { path = "./bevy-trait-query-impl", version = "0.18.0" }
