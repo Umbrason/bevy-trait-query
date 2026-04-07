@@ -11,12 +11,13 @@ version     = "0.18.0"
 [features]
 default = ["bevy_app"]
 critical-section = ["bevy_ecs/critical-section", "bevy_app?/critical-section"]
+trace = ["dep:tracing"]
 
 [dependencies]
 bevy-trait-query-impl = { workspace = true }
 bevy_app              = { default-features = false, optional = true, workspace = true }
 bevy_ecs              = { default-features = false, workspace = true }
-tracing               = { default-features = false, workspace = true }
+tracing               = { default-features = false, optional = true, workspace = true }
 
 [dev-dependencies]
 bevy      = { default-features = false, workspace = true }

@@ -17,6 +17,7 @@ impl<Trait: ?Sized + TraitQuery> TraitQueryState<Trait> {
     pub(crate) fn init(world: &mut World) -> Self {
         #[cold]
         fn missing_registry<T: ?Sized + 'static>() -> TraitImplRegistry<T> {
+            #[cfg(feature = "trace")]
             tracing::warn!(
                 "no components found matching `{}`, did you forget to register them?",
                 core::any::type_name::<T>()
