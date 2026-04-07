@@ -80,3 +80,47 @@ jobs:
         run: sudo apt-get update; sudo apt-get install --no-install-recommends libasound2-dev libudev-dev libwayland-dev libxkbcommon-dev
       - name: rustfmt
         run: cargo fmt --all -- --check
+  
+  check-compiles-no-std:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-x86_64-unknown-none-${{ hashFiles('**/Cargo.toml') }}
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: stable
+          target: x86_64-unknown-none
+      - name: Install alsa and udev
+        run: sudo apt-get update; sudo apt-get install --no-install-recommends libasound2-dev libudev-dev libwayland-dev libxkbcommon-dev
+      - name: check
+        run: cargo check -p bevy-trait-query --target x86_64-unknown-none --no-default-features -F bevy_app
+
+  check-compiles-no-std-portable-atomic:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-thumbv6m-none-eabi-${{ hashFiles('**/Cargo.toml') }}
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: stable
+          target: thumbv6m-none-eabi
+      - name: Install alsa and udev
+        run: sudo apt-get update; sudo apt-get install --no-install-recommends libasound2-dev libudev-dev libwayland-dev libxkbcommon-dev
+      - name: check
+        run: cargo check -p bevy-trait-query --target thumbv6m-none-eabi --no-default-features -F critical-section,bevy_app
