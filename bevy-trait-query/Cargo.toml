@@ -10,6 +10,7 @@ version     = "0.18.0"
 
 [features]
 default = ["bevy_app"]
+critical-section = ["bevy_ecs/critical-section", "bevy_app?/critical-section"]
 
 [dependencies]
 bevy-trait-query-impl = { workspace = true }
