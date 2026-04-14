@@ -176,7 +176,7 @@ fn impl_trait_query(arg: TokenStream, item: TokenStream) -> Result<TokenStream2>
                 fetch: &mut Self::Fetch<'w>,
                 entity: #imports::Entity,
                 table_row: #imports::TableRow,
-            ) -> Option<Self::Item<'w, 's>> {
+            ) -> ::core::option::Option<Self::Item<'w, 's>> {
                 <#my_crate::All<&#trait_object> as #imports::QueryData>::fetch(
                     state,
                     fetch,
@@ -187,8 +187,8 @@ fn impl_trait_query(arg: TokenStream, item: TokenStream) -> Result<TokenStream2>
 
             fn iter_access(
                 _state: &Self::State,
-            ) -> impl Iterator<Item = #imports::EcsAccessType<'_>> {
-                std::iter::empty()
+            ) -> impl ::core::iter::Iterator<Item = #imports::EcsAccessType<'_>> {
+                ::core::iter::empty()
             }
         }
         unsafe impl #impl_generics #imports::ReadOnlyQueryData for &#trait_object
@@ -255,15 +255,15 @@ fn impl_trait_query(arg: TokenStream, item: TokenStream) -> Result<TokenStream2>
             }
 
             #[inline]
-            fn get_state(_: &#imports::Components) -> Option<Self::State> {
+            fn get_state(_: &#imports::Components) -> ::core::option::Option<Self::State> {
                 // TODO: fix this https://github.com/bevyengine/bevy/issues/13798
-                panic!("transmuting and any other operations concerning the state of a query are currently broken and shouldn't be used. See https://github.com/JoJoJet/bevy-trait-query/issues/59");
+                ::core::panic!("transmuting and any other operations concerning the state of a query are currently broken and shouldn't be used. See https://github.com/JoJoJet/bevy-trait-query/issues/59");
             }
 
             #[inline]
             fn matches_component_set(
                 state: &Self::State,
-                set_contains_id: &impl Fn(#imports::ComponentId) -> bool,
+                set_contains_id: &impl ::core::ops::Fn(#imports::ComponentId) -> bool,
             ) -> bool {
                 <#my_crate::All<&#trait_object> as #imports::WorldQuery>::matches_component_set(state, set_contains_id)
             }
@@ -297,7 +297,7 @@ fn impl_trait_query(arg: TokenStream, item: TokenStream) -> Result<TokenStream2>
                 fetch: &mut Self::Fetch<'w>,
                 entity: #imports::Entity,
                 table_row: #imports::TableRow,
-            ) -> Option<Self::Item<'w, 's>> {
+            ) -> ::core::option::Option<Self::Item<'w, 's>> {
                 <#my_crate::All<&mut #trait_object> as #imports::QueryData>::fetch(
                     state,
                     fetch,
@@ -308,8 +308,8 @@ fn impl_trait_query(arg: TokenStream, item: TokenStream) -> Result<TokenStream2>
 
             fn iter_access(
                 _state: &Self::State,
-            ) -> impl Iterator<Item = #imports::EcsAccessType<'_>> {
-                std::iter::empty()
+            ) -> impl ::core::iter::Iterator<Item = #imports::EcsAccessType<'_>> {
+                ::core::iter::empty()
             }
         }
 
@@ -373,9 +373,9 @@ fn impl_trait_query(arg: TokenStream, item: TokenStream) -> Result<TokenStream2>
             }
 
             #[inline]
-            fn get_state(_: &#imports::Components) -> Option<Self::State> {
+            fn get_state(_: &#imports::Components) -> ::core::option::Option<Self::State> {
                 // TODO: fix this https://github.com/bevyengine/bevy/issues/13798
-                panic!("transmuting and any other operations concerning the state of a query are currently broken and shouldn't be used. See https://github.com/JoJoJet/bevy-trait-query/issues/59");
+                ::core::panic!("transmuting and any other operations concerning the state of a query are currently broken and shouldn't be used. See https://github.com/JoJoJet/bevy-trait-query/issues/59");
             }
 
             #[inline]
