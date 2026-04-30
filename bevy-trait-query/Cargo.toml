@@ -9,9 +9,7 @@ repository  = { workspace = true }
 version     = "0.18.0"
 
 [features]
-default = ["std", "bevy_app"]
-std = ["bevy_ecs/std", "bevy_app?/std"]
-critical-section = ["bevy_ecs/critical-section", "bevy_app?/critical-section"]
+default = ["bevy_app"]
 trace = ["dep:tracing"]
 
 [dependencies]
